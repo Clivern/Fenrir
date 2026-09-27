@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 """The timeout stops a long init script.
@@ -7,7 +7,7 @@ Init sleeps for 10 minutes. The timeout is 90 seconds and includes the clone.
 A passing run prints "init sleep start", then raises before the sleep finishes.
 
 Prerequisites:
-  - clivern/fenrir:v0.1.0 already pulled
+  - clivern/ferir:v0.2.0 already pulled
 
 Run:
 
@@ -21,7 +21,7 @@ import sys
 import time
 import uuid
 
-import fenrir
+import ferir
 
 REPO_URL = "https://github.com/octocat/Hello-World.git"
 TIMEOUT = 90.0
@@ -40,21 +40,21 @@ def main() -> int:
 
     start = time.monotonic()
     try:
-        fenrir.run(
-            fenrir.RunRequest(
+        ferir.run(
+            ferir.RunRequest(
                 work_dir="/tmp/basement",
                 id=id,
                 repo_url=REPO_URL,
                 prompt="Do not edit files. The init script should be killed before you start.",
                 pi_model="openrouter/anthropic/claude-sonnet-4.5",
                 proxy_url="http://host.docker.internal:8080/api",
-                docker_image="clivern/fenrir:v0.1.0",
-                container=fenrir.Container(init_bash=INIT_BASH, memory="2g", cpus="1"),
+                docker_image="clivern/ferir:v0.2.0",
+                container=ferir.Container(init_bash=INIT_BASH, memory="2g", cpus="1"),
                 cleanup=True,
             ),
             timeout=TIMEOUT,
         )
-    except fenrir.FenrirError as err:
+    except ferir.FerirError as err:
         elapsed = time.monotonic() - start
         return report(id, elapsed, err)
 
@@ -63,7 +63,7 @@ def main() -> int:
     return 1
 
 
-def report(id: str, elapsed: float, err: fenrir.FenrirError) -> int:
+def report(id: str, elapsed: float, err: ferir.FerirError) -> int:
     if "init sleep start" not in str(err):
         print(f"timeout fired before init started ({elapsed:.0f}s): {err}", file=sys.stderr)
         return 1

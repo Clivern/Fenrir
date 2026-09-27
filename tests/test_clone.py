@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 import base64
@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from fenrir import GitCloneAuth, clone_auth, ensure_clone
+from ferir import GitCloneAuth, clone_auth, ensure_clone
 
 
 def test_skips_when_git_present(tmp_path: Path) -> None:

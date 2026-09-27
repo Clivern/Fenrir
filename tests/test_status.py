@@ -1,10 +1,10 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 import subprocess
 from pathlib import Path
 
-from fenrir import changed_files_in_repo, file_status_letter
+from ferir import changed_files_in_repo, file_status_letter
 
 
 def test_file_status_letter_prefers_staging() -> None:
@@ -16,8 +16,8 @@ def test_file_status_letter_prefers_staging() -> None:
 
 def test_changed_files_in_repo(tmp_path: Path) -> None:
     _git(tmp_path, "init", "-q")
-    _git(tmp_path, "config", "user.email", "fenrir@example.com")
-    _git(tmp_path, "config", "user.name", "Fenrir")
+    _git(tmp_path, "config", "user.email", "ferir@example.com")
+    _git(tmp_path, "config", "user.name", "Ferir")
 
     (tmp_path / "keep.txt").write_text("one\n")
     (tmp_path / "gone.txt").write_text("two\n")

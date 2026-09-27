@@ -1,9 +1,9 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
 
-from .types import FenrirError, RunRequest
+from .types import FerirError, RunRequest
 
 
 class RequestValidator:
@@ -15,7 +15,7 @@ class RequestValidator:
     def validate(self) -> None:
         for name, value in self._required():
             if not value.strip():
-                raise FenrirError(f"{name} is required")
+                raise FerirError(f"{name} is required")
 
     def _required(self) -> list[tuple[str, str]]:
         req = self.req

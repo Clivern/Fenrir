@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
@@ -8,7 +8,7 @@ import os
 import subprocess
 from pathlib import Path
 
-from .types import FenrirError, GitCloneAuth
+from .types import FerirError, GitCloneAuth
 
 
 class GitClone:
@@ -38,12 +38,12 @@ class GitClone:
                 check=False,
             )
         except subprocess.TimeoutExpired as err:
-            raise FenrirError("clone: timed out") from err
+            raise FerirError("clone: timed out") from err
         except FileNotFoundError as err:
-            raise FenrirError("clone: git is not installed") from err
+            raise FerirError("clone: git is not installed") from err
 
         if proc.returncode != 0:
-            raise FenrirError(f"clone: {self._message(proc.stderr) or proc.returncode}")
+            raise FerirError(f"clone: {self._message(proc.stderr) or proc.returncode}")
 
     def auth_args(self) -> tuple[list[str], dict[str, str]]:
         """Return git config args and env for SSH key auth on git@/ssh: URLs, token auth for HTTPS,
@@ -66,7 +66,7 @@ class GitClone:
 
         key = Path(self.auth.ssh_private_key_path)
         if not key.is_file():
-            raise FenrirError(f"load SSH key: {key} does not exist")
+            raise FerirError(f"load SSH key: {key} does not exist")
 
         command = (
             f"ssh -i {key} -o IdentitiesOnly=yes"

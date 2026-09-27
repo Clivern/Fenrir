@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .types import FenrirError
+from .types import FerirError
 
 
 class PiOutput:
@@ -23,7 +23,7 @@ class PiOutput:
         try:
             raw = path.read_text(errors="replace")
         except OSError as err:
-            raise FenrirError(f"read pi.jsonl: {err}") from err
+            raise FerirError(f"read pi.jsonl: {err}") from err
 
         assistant: list[str] = []
         total_tokens = 0

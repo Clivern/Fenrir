@@ -1,9 +1,9 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from pathlib import Path
 
-from fenrir import remove_repo_dir, setup_workspace
+from ferir import remove_repo_dir, setup_workspace
 
 
 def test_setup_workspace(tmp_path: Path) -> None:

@@ -1,7 +1,7 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 #
-# Headless Pi on a mounted git repo (published as clivern/fenrir on Docker Hub).
+# Headless Pi on a mounted git repo (published as clivern/ferir on Docker Hub).
 FROM node:24-bookworm-slim
 
 RUN apt-get update \
@@ -11,7 +11,7 @@ RUN apt-get update \
 
 WORKDIR /repo
 
-COPY entrypoint.sh /usr/local/bin/fenrir-pi-entrypoint
-RUN chmod +x /usr/local/bin/fenrir-pi-entrypoint
+COPY entrypoint.sh /usr/local/bin/ferir-pi-entrypoint
+RUN chmod +x /usr/local/bin/ferir-pi-entrypoint
 
-ENTRYPOINT ["/usr/local/bin/fenrir-pi-entrypoint"]
+ENTRYPOINT ["/usr/local/bin/ferir-pi-entrypoint"]

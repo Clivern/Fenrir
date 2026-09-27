@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
@@ -6,7 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 
-class FenrirError(Exception):
+class FerirError(Exception):
     """Raised for every failure returned by this package."""
 
 

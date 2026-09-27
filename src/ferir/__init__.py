@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from .clone import GitClone, clone_auth, ensure_clone
@@ -16,7 +16,7 @@ from .types import (
     ChangedFile,
     Container,
     DockerParams,
-    FenrirError,
+    FerirError,
     GitCloneAuth,
     Result,
     RunRequest,
@@ -24,14 +24,14 @@ from .types import (
 from .validate import RequestValidator, validate
 from .workspace import Workspace, remove_repo_dir, setup_workspace
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "ChangedFile",
     "Container",
     "DockerParams",
     "DockerRun",
-    "FenrirError",
+    "FerirError",
     "GitClone",
     "GitCloneAuth",
     "GitStatus",

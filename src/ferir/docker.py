@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
@@ -6,7 +6,7 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
-from .types import DockerParams, FenrirError
+from .types import DockerParams, FerirError
 
 
 class DockerRun:
@@ -22,7 +22,7 @@ class DockerRun:
         try:
             proc = subprocess.Popen(self._args(), stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
         except FileNotFoundError as err:
-            raise FenrirError("docker run: docker is not installed") from err
+            raise FerirError("docker run: docker is not installed") from err
 
         try:
             _, stderr = proc.communicate(timeout=timeout)
@@ -31,10 +31,10 @@ class DockerRun:
             # container itself so a deadline ends init scripts and Pi.
             self._kill()
             stderr = self._drain(proc)
-            raise FenrirError(f"docker run: {self._message(stderr) or 'timed out'}")
+            raise FerirError(f"docker run: {self._message(stderr) or 'timed out'}")
 
         if proc.returncode != 0:
-            raise FenrirError(f"docker run: {self._message(stderr) or proc.returncode}")
+            raise FerirError(f"docker run: {self._message(stderr) or proc.returncode}")
 
     def _args(self) -> list[str]:
         params = self.params
@@ -122,15 +122,15 @@ class InitScripts:
             return ""
 
         if Path(rel).is_absolute() or ".." in rel:
-            raise FenrirError("Container.InitScript must be a path inside the repo")
+            raise FerirError("Container.InitScript must be a path inside the repo")
 
         rel = rel.replace("\\", "/")
         host = Path(self.repo_dir, rel)
 
         if not host.exists():
-            raise FenrirError(f"Container.InitScript: {host} does not exist")
+            raise FerirError(f"Container.InitScript: {host} does not exist")
         if host.is_dir():
-            raise FenrirError("Container.InitScript must be a file")
+            raise FerirError("Container.InitScript must be a file")
 
         return rel
 

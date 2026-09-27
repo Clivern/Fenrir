@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
@@ -10,7 +10,7 @@ from .clone import GitClone
 from .docker import DockerRun, InitScripts
 from .out import PiOutput
 from .status import GitStatus
-from .types import DockerParams, FenrirError, Result, RunRequest
+from .types import DockerParams, FerirError, Result, RunRequest
 from .validate import RequestValidator
 from .workspace import Workspace
 
@@ -55,7 +55,7 @@ class Runner:
         try:
             init.write_bash(req.container.init_bash)
         except OSError as err:
-            raise FenrirError(f"write inline init: {err}") from err
+            raise FerirError(f"write inline init: {err}") from err
 
         DockerRun(
             DockerParams(
@@ -82,7 +82,7 @@ class Runner:
         try:
             patch = Path(out_dir, "patch.diff").read_text(errors="replace")
         except OSError as err:
-            raise FenrirError(f"read patch.diff: {err}") from err
+            raise FerirError(f"read patch.diff: {err}") from err
 
         summary, total_tokens = PiOutput(out_dir).read()
 

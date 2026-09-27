@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 """Read-only codebase question against github.com/Clivern/Ziee (PR triage audit).
@@ -13,7 +13,7 @@ from __future__ import annotations
 import sys
 import uuid
 
-import fenrir
+import ferir
 
 ZIEE_REPO = "https://github.com/Clivern/Ziee.git"
 PROMPT = "Does the PR triage functionality is done?"
@@ -25,21 +25,21 @@ def main() -> int:
     print(f"job id={id}\ncloning {ZIEE_REPO} …")
 
     try:
-        result = fenrir.run(
-            fenrir.RunRequest(
+        result = ferir.run(
+            ferir.RunRequest(
                 work_dir="/tmp/basement",
                 id=id,
                 repo_url=ZIEE_REPO,
                 prompt=PROMPT,
                 pi_model="openrouter/anthropic/claude-sonnet-4.5",
                 proxy_url="http://host.docker.internal:8080/api",
-                docker_image="clivern/fenrir:v0.1.0",
-                container=fenrir.Container(memory="2g", cpus="1"),
+                docker_image="clivern/ferir:v0.2.0",
+                container=ferir.Container(memory="2g", cpus="1"),
                 cleanup=True,
             ),
             timeout=TIMEOUT,
         )
-    except fenrir.FenrirError as err:
+    except ferir.FerirError as err:
         print(f"run failed: {err}", file=sys.stderr)
         return 1
 

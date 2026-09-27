@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 """Five concurrent agent runs against github.com/Clivern/Diffsay.
@@ -18,10 +18,10 @@ import uuid
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 
-import fenrir
+import ferir
 
 REPO_URL = "https://github.com/Clivern/Diffsay.git"
-DOCKER_IMAGE = "clivern/fenrir:v0.1.0"
+DOCKER_IMAGE = "clivern/ferir:v0.2.0"
 TIMEOUT = 2 * 60 * 60
 
 TASKS = [
@@ -44,7 +44,7 @@ Do not skip; README must change even if pytest is mentioned in the code block be
 class TaskOutcome:
     n: int
     id: str
-    result: fenrir.Result | None
+    result: ferir.Result | None
     error: Exception | None
 
 
@@ -106,8 +106,8 @@ def main() -> int:
         id = str(uuid.uuid4())
         progress.start_task()
         try:
-            result = fenrir.run(
-                fenrir.RunRequest(
+            result = ferir.run(
+                ferir.RunRequest(
                     work_dir="/tmp/basement",
                     id=id,
                     repo_url=REPO_URL,
@@ -115,7 +115,7 @@ def main() -> int:
                     pi_model="openrouter/anthropic/claude-sonnet-4.5",
                     proxy_url="http://host.docker.internal:8080/api",
                     docker_image=DOCKER_IMAGE,
-                    container=fenrir.Container(memory="2g", cpus="1"),
+                    container=ferir.Container(memory="2g", cpus="1"),
                     cleanup=True,
                 ),
                 timeout=TIMEOUT,
@@ -149,7 +149,7 @@ def main() -> int:
     return 0
 
 
-def print_task_result(n: int, id: str, result: fenrir.Result) -> None:
+def print_task_result(n: int, id: str, result: ferir.Result) -> None:
     bar = "=" * 72
     print(f"\n{bar}\n[task {n}] id={id}\nout: {result.out_dir}\n{bar}")
     print("--- summary ---")

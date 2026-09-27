@@ -1,6 +1,6 @@
-## Fenrir
+## Ferir
 
-Fenrir runs coding agents on real codebases: clone any git repository (public or private), execute [Pi](https://pi.dev/) headless in Docker, and return a unified diff - so you can review, apply, or open a PR from automated tasks.
+Ferir runs coding agents on real codebases: clone any git repository (public or private), execute [Pi](https://pi.dev/) headless in Docker, and return a unified diff - so you can review, apply, or open a PR from automated tasks.
 
 
 ### Prerequisites
@@ -14,27 +14,27 @@ Fenrir runs coding agents on real codebases: clone any git repository (public or
 ### Install
 
 ```bash
-uv add fenrir
+uv add ferir
 ```
 
 ### Usage
 
 ```python
-import fenrir
+import ferir
 
-result = fenrir.run(
-    fenrir.RunRequest(
+result = ferir.run(
+    ferir.RunRequest(
         work_dir="/tmp/basement",
         id="550e8400-e29b-41d4-a716-446655440000",
         repo_url="https://github.com/Clivern/Diffsay.git",
         prompt="Add Gemfile.lock to LOW_PRIORITY_FILES",
         pi_model="openrouter/anthropic/claude-sonnet-4.5",
         proxy_url="http://host.docker.internal:8080/api",
-        docker_image="clivern/fenrir:v0.1.0",
-        container=fenrir.Container(
+        docker_image="clivern/ferir:v0.2.0",
+        container=ferir.Container(
             memory="2g",
             cpus="1",
-            init_script=".fenrir/init.sh",
+            init_script=".ferir/init.sh",
             init_bash="apt-get update && apt-get install -y jq",
         ),
         cleanup=True,
@@ -51,14 +51,14 @@ result = fenrir.run(
 HTTPS:
 
 ```python
-git_clone_auth=fenrir.GitCloneAuth(token=os.environ["GITHUB_TOKEN"]),
+git_clone_auth=ferir.GitCloneAuth(token=os.environ["GITHUB_TOKEN"]),
 repo_url="https://github.com/org/private.git",
 ```
 
 SSH:
 
 ```python
-git_clone_auth=fenrir.GitCloneAuth(
+git_clone_auth=ferir.GitCloneAuth(
     ssh_private_key_path=os.path.expanduser("~/.ssh/id_ed25519"),
 ),
 repo_url="git@github.com:org/private.git",

@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 """Edit Diffsay and run its tests inside the container.
@@ -6,7 +6,7 @@
 Init installs Python; Pi then edits const.py and runs pytest.
 
 Prerequisites:
-  - clivern/fenrir:v0.1.0
+  - clivern/ferir:v0.2.0
 
 Run:
 
@@ -18,7 +18,7 @@ from __future__ import annotations
 import sys
 import uuid
 
-import fenrir
+import ferir
 
 DIFFSAY_REPO = "https://github.com/Clivern/Diffsay.git"
 TIMEOUT = 90 * 60
@@ -40,21 +40,21 @@ def main() -> int:
     print(f"job id={id}\ncloning {DIFFSAY_REPO} …")
 
     try:
-        result = fenrir.run(
-            fenrir.RunRequest(
+        result = ferir.run(
+            ferir.RunRequest(
                 work_dir="/tmp/basement",
                 id=id,
                 repo_url=DIFFSAY_REPO,
                 prompt=PROMPT,
                 pi_model="openrouter/anthropic/claude-sonnet-4.5",
                 proxy_url="http://host.docker.internal:8080/api",
-                docker_image="clivern/fenrir:v0.1.0",
-                container=fenrir.Container(init_bash=INIT_BASH, memory="2g", cpus="1"),
+                docker_image="clivern/ferir:v0.2.0",
+                container=ferir.Container(init_bash=INIT_BASH, memory="2g", cpus="1"),
                 cleanup=True,
             ),
             timeout=TIMEOUT,
         )
-    except fenrir.FenrirError as err:
+    except ferir.FerirError as err:
         print(f"run failed: {err}", file=sys.stderr)
         return 1
 

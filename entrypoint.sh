@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 set -euo pipefail
 

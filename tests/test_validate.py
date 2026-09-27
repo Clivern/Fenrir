@@ -1,9 +1,9 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 import pytest
 
-from fenrir import Container, FenrirError, RunRequest, validate
+from ferir import Container, FerirError, RunRequest, validate
 
 
 def valid_run_request() -> RunRequest:
@@ -14,7 +14,7 @@ def valid_run_request() -> RunRequest:
         prompt="do something",
         pi_model="openrouter/anthropic/claude-sonnet-4.5",
         proxy_url="https://openrouter.ai/api/v1",
-        docker_image="fenrir-pi:local",
+        docker_image="ferir-pi:local",
         container=Container(memory="2g", cpus="1"),
     )
 
@@ -38,7 +38,7 @@ def test_missing_field(field: str, value: str, message: str) -> None:
     req = valid_run_request()
     setattr(req, field, value)
 
-    with pytest.raises(FenrirError, match=message):
+    with pytest.raises(FerirError, match=message):
         validate(req)
 
 
@@ -46,5 +46,5 @@ def test_missing_container_limits() -> None:
     req = valid_run_request()
     req.container.memory = ""
 
-    with pytest.raises(FenrirError, match="Container.Memory is required"):
+    with pytest.raises(FerirError, match="Container.Memory is required"):
         validate(req)

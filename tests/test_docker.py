@@ -1,11 +1,11 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from pathlib import Path
 
 import pytest
 
-from fenrir import FenrirError, resolve_repo_init_script, write_init_bash
+from ferir import FerirError, resolve_repo_init_script, write_init_bash
 
 
 def test_write_init_bash(tmp_path: Path) -> None:
@@ -22,10 +22,10 @@ def test_write_init_bash_skips_blank(tmp_path: Path) -> None:
 
 
 def test_resolve_repo_init_script(tmp_path: Path) -> None:
-    (tmp_path / ".fenrir").mkdir()
-    (tmp_path / ".fenrir" / "init.sh").write_text("echo hi\n")
+    (tmp_path / ".ferir").mkdir()
+    (tmp_path / ".ferir" / "init.sh").write_text("echo hi\n")
 
-    assert resolve_repo_init_script(str(tmp_path), " .fenrir/init.sh ") == ".fenrir/init.sh"
+    assert resolve_repo_init_script(str(tmp_path), " .ferir/init.sh ") == ".ferir/init.sh"
 
 
 def test_resolve_repo_init_script_blank(tmp_path: Path) -> None:
@@ -34,17 +34,17 @@ def test_resolve_repo_init_script_blank(tmp_path: Path) -> None:
 
 @pytest.mark.parametrize("rel", ["/etc/init.sh", "../init.sh"])
 def test_resolve_repo_init_script_outside_repo(tmp_path: Path, rel: str) -> None:
-    with pytest.raises(FenrirError, match="must be a path inside the repo"):
+    with pytest.raises(FerirError, match="must be a path inside the repo"):
         resolve_repo_init_script(str(tmp_path), rel)
 
 
 def test_resolve_repo_init_script_missing(tmp_path: Path) -> None:
-    with pytest.raises(FenrirError, match="does not exist"):
+    with pytest.raises(FerirError, match="does not exist"):
         resolve_repo_init_script(str(tmp_path), "init.sh")
 
 
 def test_resolve_repo_init_script_directory(tmp_path: Path) -> None:
     (tmp_path / "scripts").mkdir()
 
-    with pytest.raises(FenrirError, match="must be a file"):
+    with pytest.raises(FerirError, match="must be a file"):
         resolve_repo_init_script(str(tmp_path), "scripts")

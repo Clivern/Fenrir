@@ -1,9 +1,9 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from pathlib import Path
 
-from fenrir import assistant_text, read_out
+from ferir import assistant_text, read_out
 
 JSONL = """{"type":"message_update","usage":{"totalTokens":105}}
 {"type":"message_end","message":{"role":"assistant","content":[{"type":"text","text":"Done editing const.py."}]}}

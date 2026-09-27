@@ -31,5 +31,5 @@ jobs:
           context: .
           push: true
           tags: |
-            clivern/fenrir:${{ steps.tag.outputs.name }}
-            clivern/fenrir:latest
+            clivern/ferir:${{ steps.tag.outputs.name }}
+            clivern/ferir:latest

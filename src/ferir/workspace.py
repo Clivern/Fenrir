@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
@@ -6,7 +6,7 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
-from .types import FenrirError
+from .types import FerirError
 
 
 class Workspace:
@@ -22,7 +22,7 @@ class Workspace:
         try:
             Path(self.out_dir).mkdir(parents=True, exist_ok=True)
         except OSError as err:
-            raise FenrirError(f"create out dir: {err}") from err
+            raise FerirError(f"create out dir: {err}") from err
 
         return self.repo_dir, self.out_dir
 
@@ -33,7 +33,7 @@ class Workspace:
         except FileNotFoundError:
             return
         except OSError as err:
-            raise FenrirError(f"remove job dir: {err}") from err
+            raise FerirError(f"remove job dir: {err}") from err
 
 
 def setup_workspace(work_dir: str, id: str) -> tuple[str, str]:

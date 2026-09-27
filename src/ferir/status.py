@@ -1,4 +1,4 @@
-# Copyright 2026 Fenrir. All rights reserved.
+# Copyright 2026 Ferir. All rights reserved.
 # License can be found in the LICENSE file.
 
 from __future__ import annotations
@@ -6,7 +6,7 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
-from .types import ChangedFile, FenrirError
+from .types import ChangedFile, FerirError
 
 
 class GitStatus:
@@ -27,7 +27,7 @@ class GitStatus:
                 try:
                     content = Path(self.repo_dir, path).read_text(errors="replace")
                 except OSError as err:
-                    raise FenrirError(f"{path}: {err}") from err
+                    raise FerirError(f"{path}: {err}") from err
             files.append(ChangedFile(path=path, status=letter, content=content))
 
         files.sort(key=lambda f: f.path)
@@ -42,10 +42,10 @@ class GitStatus:
                 check=False,
             )
         except FileNotFoundError as err:
-            raise FenrirError("status: git is not installed") from err
+            raise FerirError("status: git is not installed") from err
 
         if proc.returncode != 0:
-            raise FenrirError(f"status: {(proc.stderr or b'').decode(errors='replace').strip()}")
+            raise FerirError(f"status: {(proc.stderr or b'').decode(errors='replace').strip()}")
 
         return proc.stdout.decode(errors="replace")
 
